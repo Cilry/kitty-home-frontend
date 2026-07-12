@@ -58,7 +58,7 @@ function App() {
           borderBottom: "1px solid rgba(150,180,210,0.3)"
         }}>
           <div style={{ fontSize: "11px", letterSpacing: "4px", color: "#8aa4bc", marginBottom: "8px" }}>PRIVATE SPACE</div>
-          <div style={{ fontSize: "28px", color: "#3d6480", fontStyle: "italic", letterSpacing: "1px" }}>kitty & 金毛老公</div>
+          <div style={{ fontSize: "28px", color: "#3d6480", fontStyle: "italic", letterSpacing: "1px" }}>kitty & puppy老公</div>
           <div style={{ fontSize: "11px", color: "#9ab5c8", marginTop: "8px", letterSpacing: "2px" }}>in endless tides, we find each other</div>
         </div>
 
@@ -120,15 +120,19 @@ function App() {
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => e.key === "Enter" && sendMessage()}
-            placeholder="说点什么..."
+            placeholder="say something..."
             style={{
               flex: 1,
               padding: "10px 16px",
               borderRadius: "24px",
               border: "1px solid rgba(150,180,210,0.5)",
-              background: "rgba(255,255,255,0.6)",
-              color: "#3d5a6e",
-              fontSize: "14px",
+              background: m.role === "user"
+  ? "rgba(100,150,190,0.85)"
+  : "rgba(255,255,255,0.75)",
+color: m.role === "user" ? "#fff" : "#3d5a6e",
+fontSize: "14px",
+lineHeight: "1.6",
+textAlign: "left",
               outline: "none",
               fontFamily: "Georgia, serif"
             }}
@@ -145,7 +149,7 @@ function App() {
               cursor: "pointer",
               letterSpacing: "1px"
             }}
-          >发送</button>
+          >put</button>
         </div>
       </div>
     </div>

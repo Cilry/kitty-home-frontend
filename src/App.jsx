@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const API_URL = "https://kitty-home-backend-production.up.railway.app"
 
@@ -6,6 +6,12 @@ function App() {
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState("")
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    fetch(`${API_URL}/api/history`)
+      .then(r => r.json())
+      .then(data => setMessages(data))
+  }, [])
 
   const sendMessage = async () => {
     if (!input.trim()) return

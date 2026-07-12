@@ -38,7 +38,7 @@ function App() {
     <div style={{
       minHeight: "100vh",
       background: "linear-gradient(135deg, #e8eef5 0%, #d6e4f0 50%, #c9daea 100%)",
-      backgroundImage: "url('/bg.png')",
+      backgroundImage: "url('./bg.png')",
       backgroundSize: "contain",
       backgroundPosition: "bottom center",
       backgroundRepeat: "no-repeat",

@@ -50,14 +50,14 @@ function App() {
         backgroundImage: "url('/kitty.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        filter: "brightness(0.85) saturate(0.7) hue-rotate(180deg)",
+        filter: "brightness(0.95)",
         zIndex: 0
       }} />
       {/* 蓝色蒙层 */}
       <div style={{
         position: "fixed",
         inset: 0,
-        background: "linear-gradient(180deg, rgba(30,50,90,0.45) 0%, rgba(60,90,140,0.3) 100%)",
+        background: "linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.2) 100%)",
         zIndex: 1
       }} />
 

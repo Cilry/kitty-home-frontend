@@ -37,33 +37,51 @@ function App() {
   return (
     <div style={{
       minHeight: "100vh",
-      background: "linear-gradient(135deg, #e8eef5 0%, #d6e4f0 50%, #c9daea 100%)",
-      backgroundImage: "url('/kitty.jpg')",
-      backgroundSize: "contain",
-      backgroundPosition: "bottom center",
-      backgroundRepeat: "no-repeat",
+      position: "relative",
+      fontFamily: "'Georgia', serif",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      fontFamily: "'Georgia', serif"
     }}>
+      {/* 背景图 */}
       <div style={{
+        position: "fixed",
+        inset: 0,
+        backgroundImage: "url('/kitty.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        filter: "brightness(0.85) saturate(0.7) hue-rotate(180deg)",
+        zIndex: 0
+      }} />
+      {/* 蓝色蒙层 */}
+      <div style={{
+        position: "fixed",
+        inset: 0,
+        background: "linear-gradient(180deg, rgba(30,50,90,0.45) 0%, rgba(60,90,140,0.3) 100%)",
+        zIndex: 1
+      }} />
+
+      {/* 主内容 */}
+      <div style={{
+        position: "relative",
+        zIndex: 2,
         width: "100%",
         maxWidth: "480px",
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        backdropFilter: "blur(10px)"
       }}>
         {/* 顶部标题 */}
         <div style={{
-          padding: "32px 24px 16px",
+          padding: "36px 24px 16px",
           textAlign: "center",
-          borderBottom: "1px solid rgba(150,180,210,0.3)"
+          borderBottom: "1px solid rgba(200,220,255,0.2)",
+          backdropFilter: "blur(8px)",
+          background: "rgba(20,40,80,0.25)"
         }}>
-          <div style={{ fontSize: "11px", letterSpacing: "4px", color: "#8aa4bc", marginBottom: "8px" }}>PRIVATE SPACE</div>
-          <div style={{ fontSize: "28px", color: "#3d6480", fontStyle: "italic", letterSpacing: "1px" }}>kitty & puppy老公</div>
-          <div style={{ fontSize: "11px", color: "#9ab5c8", marginTop: "8px", letterSpacing: "2px" }}>in endless tides, we find each other</div>
+          <div style={{ fontSize: "10px", letterSpacing: "5px", color: "rgba(180,205,255,0.7)", marginBottom: "8px" }}>PRIVATE SPACE</div>
+          <div style={{ fontSize: "26px", color: "rgba(220,235,255,0.95)", fontStyle: "italic", letterSpacing: "2px" }}>kitty & 金毛老公</div>
+          <div style={{ fontSize: "10px", color: "rgba(160,190,255,0.6)", marginTop: "8px", letterSpacing: "3px" }}>in endless tides, we find each other</div>
         </div>
 
         {/* 消息区 */}
@@ -73,7 +91,7 @@ function App() {
           padding: "20px 16px",
           display: "flex",
           flexDirection: "column",
-          gap: "12px"
+          gap: "14px"
         }}>
           {messages.map((m, i) => (
             <div key={i} style={{
@@ -85,13 +103,17 @@ function App() {
                 padding: "10px 16px",
                 borderRadius: m.role === "user" ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
                 background: m.role === "user"
-                  ? "rgba(100,150,190,0.85)"
-                  : "rgba(255,255,255,0.75)",
-                color: m.role === "user" ? "#fff" : "#3d5a6e",
+                  ? "rgba(80,120,200,0.65)"
+                  : "rgba(255,255,255,0.15)",
+                color: "rgba(235,242,255,0.95)",
                 fontSize: "14px",
-                lineHeight: "1.6",
-                boxShadow: "0 2px 8px rgba(100,150,200,0.15)",
-                backdropFilter: "blur(4px)"
+                lineHeight: "1.7",
+                textAlign: "left",
+                boxShadow: "0 2px 12px rgba(30,60,120,0.2)",
+                backdropFilter: "blur(12px)",
+                border: m.role === "user"
+                  ? "1px solid rgba(120,160,255,0.3)"
+                  : "1px solid rgba(255,255,255,0.15)"
               }}>
                 {m.content}
               </div>
@@ -102,9 +124,10 @@ function App() {
               <div style={{
                 padding: "10px 16px",
                 borderRadius: "18px 18px 18px 4px",
-                background: "rgba(255,255,255,0.75)",
-                color: "#8aa4bc",
-                fontSize: "14px"
+                background: "rgba(255,255,255,0.15)",
+                color: "rgba(200,220,255,0.8)",
+                fontSize: "14px",
+                backdropFilter: "blur(12px)"
               }}>···</div>
             </div>
           )}
@@ -114,31 +137,28 @@ function App() {
         {/* 输入区 */}
         <div style={{
           padding: "16px",
-          borderTop: "1px solid rgba(150,180,210,0.3)",
+          borderTop: "1px solid rgba(200,220,255,0.2)",
           display: "flex",
           gap: "10px",
-          background: "rgba(255,255,255,0.3)",
-          backdropFilter: "blur(10px)"
+          backdropFilter: "blur(16px)",
+          background: "rgba(20,40,80,0.3)"
         }}>
           <input
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => e.key === "Enter" && sendMessage()}
-            placeholder="say something..."
+            placeholder="Say something..."
             style={{
               flex: 1,
               padding: "10px 16px",
               borderRadius: "24px",
-              border: "1px solid rgba(150,180,210,0.5)",
-              background: m.role === "user"
-  ? "rgba(100,150,190,0.85)"
-  : "rgba(255,255,255,0.75)",
-color: m.role === "user" ? "#fff" : "#3d5a6e",
-fontSize: "14px",
-lineHeight: "1.6",
-textAlign: "left",
+              border: "1px solid rgba(150,180,255,0.3)",
+              background: "rgba(255,255,255,0.1)",
+              color: "rgba(235,242,255,0.95)",
+              fontSize: "14px",
               outline: "none",
-              fontFamily: "Georgia, serif"
+              fontFamily: "Georgia, serif",
+              backdropFilter: "blur(8px)"
             }}
           />
           <button
@@ -146,14 +166,15 @@ textAlign: "left",
             style={{
               padding: "10px 20px",
               borderRadius: "24px",
-              border: "none",
-              background: "rgba(100,150,190,0.8)",
-              color: "#fff",
+              border: "1px solid rgba(150,180,255,0.4)",
+              background: "rgba(80,120,200,0.6)",
+              color: "rgba(235,242,255,0.95)",
               fontSize: "14px",
               cursor: "pointer",
-              letterSpacing: "1px"
+              letterSpacing: "1px",
+              backdropFilter: "blur(8px)"
             }}
-          >put</button>
+          >Send</button>
         </div>
       </div>
     </div>

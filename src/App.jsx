@@ -159,7 +159,7 @@ function App() {
           borderTop: "1px solid rgba(0,0,0,0.06)",
           display: "flex", gap: "10px", alignItems: "center",
           backdropFilter: "blur(12px)",
-          background: "rgba(255, 255, 255, 0.68)"
+          background: "rgba(255, 255, 255, 0.15)"
         }}>
           <input
             value={input}
